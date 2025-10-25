@@ -22,10 +22,18 @@ mkdir /mnt/boot
 # Создание российского mirrorlist
 cat > /etc/pacman.d/mirrorlist << 'EOF'
 ## Russia
-Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
-Server = https://mirrors.powernet.com.ru/archlinux/$repo/os/$arch
-Server = https://archlinux.zepto.cloud/$repo/os/$arch
+Server = https://archlinux.gay/archlinux/$repo/os/$arch
+Server = https://ru.mirrors.cicku.me/archlinux/$repo/os/$arch
+Server = https://mirror.kamtv.ru/archlinux/$repo/os/$arch
+Server = https://mirror.kpfu.ru/archlinux/$repo/os/$arch
+Server = https://mirror.nw-sys.ru/archlinux/$repo/os/$arch
+Server = https://repository.su/archlinux/$repo/os/$arch
+Server = https://web.sketserv.ru/archlinux/$repo/os/$arch
+Server = https://mirror2.sl-chat.ru/archlinux/$repo/os/$arch
+Server = https://mirror3.sl-chat.ru/archlinux/$repo/os/$arch
 Server = https://mirror.truenetwork.ru/archlinux/$repo/os/$arch
+Server = https://vladivostokst.ru/archlinux/$repo/os/$arch
+Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 EOF
 
 # Установка

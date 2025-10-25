@@ -1,10 +1,13 @@
 #!/bin/bash
 # Переменные
 disk="/dev/sda"
-swap="16384"
-filesystem=$((swap + 513))
+
 
 # Диск
+swap=15625
+efisize=512
+filesystem=$((swap + 513))
+
 wipefs --all $disk
 
 parted -s $disk mklabel gpt

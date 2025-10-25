@@ -14,7 +14,19 @@ mkswap "${disk}2"
 swapon "${disk}2"
 mkfs.ext4 -F "${disk}3"
 
-# Монтирование и установка
+# Монтирование
 mount ${disk}3 /mnt
 mkdir /mnt/boot
+
+# Смена зеркал
+# Создание российского mirrorlist
+cat > /etc/pacman.d/mirrorlist << 'EOF'
+## Russia
+Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
+Server = https://mirrors.powernet.com.ru/archlinux/$repo/os/$arch
+Server = https://archlinux.zepto.cloud/$repo/os/$arch
+Server = https://mirror.truenetwork.ru/archlinux/$repo/os/$arch
+EOF
+
+# Установка
 pacstrap /mnt base base-devel linux linux-firmware

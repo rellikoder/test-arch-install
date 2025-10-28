@@ -16,7 +16,8 @@ mkfs.ext4 -F "${disk}3"
 
 # Монтирование
 mount ${disk}3 /mnt
-mkdir /mnt/boot
+mkdir -p /mnt/boot/efi
+mount ${disk}1 /mnt/boot/efi
 
 # Смена зеркал
 cat > /etc/pacman.d/mirrorlist << 'EOF'
@@ -35,7 +36,17 @@ Server = https://vladivostokst.ru/archlinux/$repo/os/$arch
 Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 EOF
 
-# Установка
+# Установка базовой системы
 pacstrap /mnt base base-devel linux linux-firmware sudo networkmanager grub efibootmgr
 
-bash ./setup.sh
+# Генерация fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# Копирование chroot скрипта и запуск
+cp ./chroot.sh /mnt/chroot.sh
+chmod +x /mnt/chroot.sh
+arch-chroot /mnt /bin/bash /chroot.sh
+
+# После выхода из chroot
+umount -R /mnt
+echo "Установка завершена!"

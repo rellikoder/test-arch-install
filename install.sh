@@ -36,6 +36,6 @@ Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 EOF
 
 # Установка
-pacstrap /mnt base base-devel linux linux-firmware sudo networkmanager
+pacstrap /mnt base base-devel linux linux-firmware sudo networkmanager grub efibootmgr
 
 bash ./setup.sh

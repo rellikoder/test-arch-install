@@ -33,9 +33,9 @@ echo "qwerty:$user_pass" | chpasswd
 
 usermod -aG wheel,video,audio,storage,optical,scanner qwerty
 
-#remove
-pacman -S sudo networkmanager
-
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 systemctl enable NetworkManager
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg

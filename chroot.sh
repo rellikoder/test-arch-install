@@ -1,4 +1,8 @@
 #!/bin/bash
+root_pass="qwe"
+user_pass="qwe"
+
+
 ln -sf /usr/share/zoneinfo/Europe/Saratov /etc/localtime
 hwclock --systohc
 
@@ -21,13 +25,10 @@ cat > /etc/hosts << EOF
 127.0.1.1    qwerty.localdomain    qwerty
 EOF
 
-echo "Введите пароль для root:"
-read -s root_pass
+
 echo "root:$root_pass" | chpasswd
 
 useradd -m -s /bin/bash qwerty
-echo "Введите пароль для пользователя qwerty:"
-read -s user_pass
 echo "qwerty:$user_pass" | chpasswd
 
 usermod -aG wheel,video,audio,storage,optical,scanner qwerty
